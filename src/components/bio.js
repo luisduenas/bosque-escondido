@@ -6,7 +6,7 @@ const Bio = ({ author }) => {
     <div>
       {author.avatar && (
         <Image
-          fixed={author.avatar}
+          fluid={author.avatar.fluid}
           alt={author.name}
           imgStyle={{
             borderRadius: `50%`,
