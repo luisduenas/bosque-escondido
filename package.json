@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "Luis Duenas <luis.alonso.duenas.m@gmail.com>",
   "dependencies": {
+    "eslint-import-resolver-alias": "^1.1.2",
     "gatsby": "^2.25.3",
     "gatsby-image": "^2.4.21",
     "gatsby-plugin-manifest": "^2.5.2",
@@ -23,7 +24,14 @@
     "theme-ui": "^0.3.3"
   },
   "devDependencies": {
-    "prettier": "2.1.2"
+    "@babel/core": "^7.12.3",
+    "@storybook/addon-actions": "^6.0.28",
+    "@storybook/addon-essentials": "^6.0.28",
+    "@storybook/addon-links": "^6.0.28",
+    "@storybook/react": "^6.0.28",
+    "babel-loader": "^8.2.1",
+    "prettier": "2.1.2",
+    "react-is": "^17.0.1"
   },
   "keywords": [
     "gatsby"
@@ -36,7 +44,9 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
+    "storybook": "start-storybook -p 6006 --no-dll",
+    "build-storybook": "build-storybook --no-dll"
   },
   "repository": {
     "type": "git",

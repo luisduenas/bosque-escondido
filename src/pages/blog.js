@@ -4,7 +4,7 @@ import { Box, Heading } from "theme-ui"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import Link from "../components/link"
+import { Link } from "ui"
 
 const SecondPage = ({ data }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
@@ -14,7 +14,6 @@ const SecondPage = ({ data }) => {
     return (
       <Layout title={siteTitle}>
         <SEO title="All posts" />
-        {/* <Bio /> */}
         <Box as="p">
           No blog posts found. Add markdown posts to "content/blog" (or the
           directory you specified for the "gatsby-source-filesystem" plugin in

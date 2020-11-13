@@ -17,7 +17,6 @@ exports.createPages = ({ graphql, actions }) => {
       }
     `).then(result => {
       result.data.allDatoCmsBlogpost.edges.map(({ node: blogpost }) => {
-        console.log(blogpost)
         createPage({
           path: `blog/${blogpost.slug}`,
           component: path.resolve(`./src/templates/blogpost.js`),
@@ -28,5 +27,16 @@ exports.createPages = ({ graphql, actions }) => {
       })
       resolve()
     })
+  })
+}
+
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    resolve: {
+      alias: {
+        ui: path.resolve(__dirname, "src/components"),
+        blocks: path.resolve(__dirname, "src/blocks"),
+      },
+    },
   })
 }

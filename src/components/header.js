@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { Box, Heading } from "theme-ui"
-import Link from "../components/link"
+import { Link } from "ui"
 
 const Header = ({ siteTitle }) => (
   <Box
