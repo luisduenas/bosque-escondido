@@ -1,8 +1,10 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
+import { Box, Heading } from "theme-ui"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import Link from "../components/link"
 
 const SecondPage = ({ data }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
@@ -13,11 +15,11 @@ const SecondPage = ({ data }) => {
       <Layout title={siteTitle}>
         <SEO title="All posts" />
         {/* <Bio /> */}
-        <p>
+        <Box as="p">
           No blog posts found. Add markdown posts to "content/blog" (or the
           directory you specified for the "gatsby-source-filesystem" plugin in
           gatsby-config.js).
-        </p>
+        </Box>
       </Layout>
     )
   }
@@ -25,8 +27,9 @@ const SecondPage = ({ data }) => {
   return (
     <Layout title={siteTitle}>
       <SEO title="Blog" />
-      <ol
-        style={{
+      <Box
+        as="ol"
+        __css={{
           listStyle: `none`,
           paddingLeft: 0,
         }}
@@ -35,38 +38,62 @@ const SecondPage = ({ data }) => {
           const title = post.title
 
           return (
-            <li
+            <Box
+              as="li"
               key={post.slug}
-              style={{
+              __css={{
                 borderBottom: "solid gray 1px",
+                mb: 4,
               }}
             >
-              <article
-                itemScope
-                itemType="http://schema.org/Article"
+              <Link
+                to={post.slug}
+                itemProp="url"
+                sx={{
+                  textDecoration: "none",
+                }}
               >
-                <header>
-                  <h2>
-                    <Link to={post.slug} itemProp="url">
-                      <span itemProp="headline">{title}</span>
-                    </Link>
-                  </h2>
-                  <small>{post.publishdate}</small>
-                </header>
-                <section>
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: post.excerpt,
-                    }}
-                    itemProp="description"
-                  />
-                </section>
-              </article>
-            </li>
+                <Box
+                  as="article"
+                  itemScope
+                  itemType="http://schema.org/Article"
+                  __css={{
+                    mb: 3,
+                  }}
+                >
+                  <Box as="header">
+                    <Heading sa="h2">
+                      <Box as="span" itemProp="headline">
+                        {title}
+                      </Box>
+                    </Heading>
+                    <Box as="small">{post.publishdate}</Box>
+                  </Box>
+                  <Box as="section">
+                    <Box
+                      __css={{
+                        mt: 2,
+                        color: "text",
+                      }}
+                      dangerouslySetInnerHTML={{
+                        __html: post.excerpt,
+                      }}
+                      itemProp="description"
+                    />
+                  </Box>
+                </Box>
+              </Link>
+            </Box>
           )
         })}
-      </ol>
-      <Link to="/">Go back to the homepage</Link>
+      </Box>
+      <Box
+        sx={{
+          mt: 3,
+        }}
+      >
+        <Link to="/">Go back to the homepage</Link>
+      </Box>
     </Layout>
   )
 }

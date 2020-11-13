@@ -1,29 +1,36 @@
 import React from "react"
 import Image from "gatsby-image"
+import { Box, Flex, Link } from "theme-ui"
 
 const Bio = ({ author }) => {
   return (
-    <div>
+    <Flex>
       {author.avatar && (
         <Image
-          fluid={author.avatar.fluid}
+          fixed={author.avatar.fixed}
           alt={author.name}
           imgStyle={{
-            borderRadius: `50%`,
+            borderRadius: "50%",
           }}
         />
       )}
-      {author.name && (
-        <p>
-          Written by <strong>{author.name}</strong> {author.summary || null}
-        </p>
-      )}
-      {author.social && (
-        <p>
-          <a href={author.url}>{author.social.name}</a>
-        </p>
-      )}
-    </div>
+      <Box
+        __css={{
+          ml: 3,
+        }}
+      >
+        {author.name && (
+          <Box as="p">
+            Written by <strong>{author.name}</strong> {author.summary || null}
+          </Box>
+        )}
+        {author.social && (
+          <Box as="p">
+            <Link href={author.url}>{author.social.name}</Link>
+          </Box>
+        )}
+      </Box>
+    </Flex>
   )
 }
 

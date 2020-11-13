@@ -2,6 +2,8 @@ import React from "react"
 import { HelmetDatoCms } from "gatsby-source-datocms"
 import Img from "gatsby-image"
 import { graphql } from "gatsby"
+import { Box, Heading } from "theme-ui"
+
 import Layout from "../components/layout"
 import Bio from "../components/bio"
 
@@ -9,11 +11,11 @@ export default ({ data }) => {
   const { blogpost } = data
   return (
     <Layout>
-      <div style={{ paddingLeft: "20px", paddingRight: "20px" }}>
+      <Box style={{ paddingLeft: "20px", paddingRight: "20px" }}>
         <HelmetDatoCms seo={blogpost.seoMetaTags} />
-        <div>
-          <h1>{blogpost.title}</h1>
-          <div>
+        <Box>
+          <Heading as="h1">{blogpost.title}</Heading>
+          <Box>
             <Img
               style={{
                 marginLeft: "auto",
@@ -22,18 +24,18 @@ export default ({ data }) => {
               }}
               fluid={blogpost.hero.fluid}
             />
-          </div>
-          <div
+          </Box>
+          <Box
             style={{ paddingTop: "25px" }}
             dangerouslySetInnerHTML={{
               __html: blogpost.contentNode.childMarkdownRemark.html,
             }}
           />
-        </div>
-        <div>
+        </Box>
+        <Box>
           <Bio author={blogpost.author} />
-        </div>
-      </div>
+        </Box>
+      </Box>
     </Layout>
   )
 }
@@ -61,8 +63,15 @@ export const query = graphql`
           icon
         }
         avatar {
-          fluid(imgixParams: { fm: "jpg", auto: "compress" }) {
-            ...GatsbyDatoCmsSizes
+          fixed(width: 50, height: 50) {
+            base64
+            tracedSVG
+            aspectRatio
+            sizes
+            src
+            srcSet
+            height
+            width
           }
         }
       }
